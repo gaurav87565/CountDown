@@ -1,5 +1,5 @@
-const JSONBIN_API_KEY = "$2a$10$H3NJAZGCNj9t0l/Wz4IZVOUWviXLrYjHod96jTZMMbU5Gf4zdzv0W"; // Replace with your actual API key
-const JSONBIN_URL = "https://api.jsonbin.io/v3/b"; // JSONBin Base URL
+const JSONBIN_API_KEY = "$2a$10$H3NJAZGCNj9t0l/Wz4IZVOUWviXLrYjHod96jTZMMbU5Gf4zdzv0W";
+const JSONBIN_URL = "https://api.jsonbin.io/v3/b";
 
 // Function to fetch and display countdown
 async function displayCountdown() {
@@ -12,7 +12,7 @@ async function displayCountdown() {
 		}
 
 		try {
-				console.log("Fetching countdown with ID:", countdownId); // Debugging log
+				console.log("Fetching countdown with ID:", countdownId);
 
 				const response = await fetch(`${JSONBIN_URL}/${countdownId}`, {
 						headers: {
@@ -25,7 +25,7 @@ async function displayCountdown() {
 				}
 
 				const data = await response.json();
-				console.log("Fetched countdown data:", data); // Debugging log
+				console.log("Fetched countdown data:", data);
 
 				const countdownData = data.record;
 
@@ -76,10 +76,9 @@ if (window.location.pathname.includes("countdown.html")) {
 		document.addEventListener("DOMContentLoaded", displayCountdown);
 }
 
-// ✅ Fix Burger Menu Toggle
 document.addEventListener("DOMContentLoaded", () => {
 		const burger = document.querySelector(".burger-menu");
-		const mobileNav = document.getElementById("mobileNav"); // FIXED: Corrected ID reference
+		const mobileNav = document.getElementById("mobileNav");
 
 		if (burger && mobileNav) {
 				burger.addEventListener("click", () => {
