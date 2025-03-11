@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaPirates | CountDown</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #222;
+            color: white;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 16px;
+        }
+
+        .logo {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 4px 0;
+        }
+
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background: #333;
+            position: absolute;
+            top: 60px;
+            right: 0;
+            width: 200px;
+            padding: 10px;
+        }
+
+        .mobile-nav a {
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .mobile-nav.show {
+            display: flex;
+        }
+
+        @media (max-width: 768px) {
+            .nav-right {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+        }
+        
+        /* Footer */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: #23272A;
+            color: #ffffff;
+            text-align: center;
+            padding: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.5);
+            text-shadow: 0px 0px 5px rgba(114, 137, 218, 0.8);
+            border-top: 2px solid rgba(114, 137, 218, 0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .footer a {
+            color: #7289DA;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .footer a:hover {
+            color: #5865F2;
+            text-shadow: 0px 0px 10px rgba(114, 137, 218, 1);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="index.html">
+                <div class="logo"> <img src="Assets/logo.png" alt="Logo"style="width:50px;height:40px;"></div>
+            </a>
+        </div>
+        <div class="nav-right">
+            <a href="index.html" class="nav-link">🏠 Home</a>
+            <a href="https://github.com/gaurav87565/CPS-count"><img src="/Assets/github.png" alt="Logo"style="width:20px;height:20px;"> Github</a>
+        </div>
+        <div class="burger-menu" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </nav>
+    <div id="mobileNav" class="mobile-nav">
+        <a href="index.html">🏠 Home</a>
+        <a href="https://github.com/gaurav87565/CPS-count"><img src="/Assets/github.png" alt="Logo"style="width:20px;height:20px;"> Github</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1 id="countdown-title">⏳ Loading event...</h1>
+        <p id="timer" class="countdown">00d 00h 00m 00s</p>
+        <button id="copy-btn" onclick="copyLink()">📋 Copy Shareable Link</button>
+    </div>
+
+    <!-- Copy Link Popup -->
+    <div id="copyPopup" class="popup hidden">
+        <p id="copyMessage">🔗 Link copied!</p>
+    </div>
+
+    <!-- Error Message Popup -->
+    <div id="errorPopup" class="popup hidden">
+        <p id="errorMessage"></p>
+        <button onclick="closeError()">Close</button>
+    </div>
+
+    <script>
+        function copyLink() {
+            const url = window.location.href;
+            const copyPopup = document.getElementById("copyPopup");
+            const copyMessage = document.getElementById("copyMessage");
+
+            navigator.clipboard.writeText(url)
+                .then(() => {
+                    copyMessage.innerText = "🔗 Link copied!";
+                    copyPopup.style.border = "3px solid #4CAF50"; // Green border for success
+                })
+                .catch(() => {
+                    copyMessage.innerText = "❌ Failed to copy link.";
+                    copyPopup.style.border = "3px solid #FF0000"; // Red border for error
+                });
+
+            copyPopup.classList.remove("hidden");
+            copyPopup.style.display = "block";
+
+            setTimeout(() => {
+                copyPopup.classList.add("hidden");
+                copyPopup.style.display = "none";
+            }, 2000);
+        }
+
+        function closeError() {
+            document.getElementById("errorPopup").classList.add("hidden");
+        }
+
+        function toggleMenu() {
+            const mobileNav = document.querySelector(".mobile-nav");
+            mobileNav.classList.toggle("hidden");
+        }
+    </script>
+
+    <script src="script.js"></script>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <p>© 2025 Gaurav - DaPirates Development Team</p>
+    </footer>
+</body>
+</html>
