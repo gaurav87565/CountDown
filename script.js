@@ -1,4 +1,4 @@
-const JSONBIN_API_KEY = "$2a$10$H3NJAZGCNj9t0l/Wz4IZVOUWviXLrYjHod96jTZMMbU5Gf4zdzv0W";
+const JSONBIN_API_KEY = process.env.APIKEY;
 const JSONBIN_URL = "https://api.jsonbin.io/v3/b";
 
 // Function to fetch and display countdown
